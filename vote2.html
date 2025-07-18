@@ -1,18 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head><title>Vote Page 2</title></head>
+<head>
+  <title>Vote Page 2</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #fffefc; }
+    .item { margin: 30px 0; font-size: 20px; }
+    .stars { display: inline-block; }
+    .star {
+      font-size: 30px;
+      color: lightgray;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .star.selected,
+    .star:hover,
+    .star.hovered ~ .star {
+      color: gold;
+    }
+    a {
+      display: inline-block;
+      margin-top: 40px;
+      background: #2196F3;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    a:hover { background: #1976D2; }
+  </style>
+</head>
 <body>
   <h2>Rate These Food Places (2/3)</h2>
-  <!-- Add similar blocks as before -->
-  <div class="item">Pizza Hut <select onchange="saveVote('PizzaHut', this.value)"><option>Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
-  <div class="item">Taco Bell <select onchange="saveVote('TacoBell', this.value)"><option>Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
-  <div class="item">Wendy's <select onchange="saveVote('Wendys', this.value)"><option>Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+  <div class="item" data-name="PizzaHut">Pizza Hut</div>
+  <div class="item" data-name="TacoBell">Taco Bell</div>
+  <div class="item" data-name="Wendys">Wendy's</div>
   <a href="vote3.html">Next →</a>
 
   <script>
     function saveVote(place, rating) {
       localStorage.setItem(place, rating);
     }
+
+    function createStars(place) {
+      const container = document.createElement('div');
+      container.className = 'stars';
+      for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('span');
+        star.innerHTML = '★';
+        star.className = 'star';
+        star.dataset.value = i;
+        star.addEventListener('click', () => {
+          saveVote(place, i);
+          updateStars(container, i);
+        });
+        container.appendChild(star);
+      }
+      return container;
+    }
+
+    function updateStars(container, selectedValue) {
+      const stars = container.querySelectorAll('.star');
+      stars.forEach(star => {
+        star.classList.toggle('selected', parseInt(star.dataset.value) <= selectedValue);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.item').forEach(div => {
+        const name = div.dataset.name;
+        const starContainer = createStars(name);
+        div.appendChild(starContainer);
+
+        const saved = parseInt(localStorage.getItem(name));
+        if (saved) updateStars(starContainer, saved);
+      });
+    });
   </script>
 </body>
 </html>
