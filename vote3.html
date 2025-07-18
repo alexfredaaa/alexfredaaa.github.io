@@ -62,4 +62,20 @@
     function updateStars(container, selectedValue) {
       const stars = container.querySelectorAll('.star');
       stars.forEach(star => {
-        star.classList.toggle('selected', parseInt(star
+        star.classList.toggle('selected', parseInt(star.dataset.value) <= selectedValue);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.item').forEach(div => {
+        const name = div.dataset.name;
+        const starContainer = createStars(name);
+        div.appendChild(starContainer);
+
+        const saved = parseInt(localStorage.getItem(name));
+        if (saved) updateStars(starContainer, saved);
+      });
+    });
+  </script>
+</body>
+</html>
