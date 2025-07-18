@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>Vote Page 2</title></head>
+<body>
+  <h2>Rate These Food Places (2/3)</h2>
+  <!-- Add similar blocks as before -->
+  <div class="item">Pizza Hut <select onchange="saveVote('PizzaHut', this.value)"><option>Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+  <div class="item">Taco Bell <select onchange="saveVote('TacoBell', this.value)"><option>Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+  <div class="item">Wendy's <select onchange="saveVote('Wendys', this.value)"><option>Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+  <a href="vote3.html">Next →</a>
+
+  <script>
+    function saveVote(place, rating) {
+      localStorage.setItem(place, rating);
+    }
+  </script>
+</body>
+</html>

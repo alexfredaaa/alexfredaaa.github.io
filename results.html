@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Top 5 Food Places</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 50px; }
+    .place { margin: 10px 0; font-size: 20px; }
+  </style>
+</head>
+<body>
+  <h1>🎉 Your Top 5 Favorite Food Places</h1>
+  <div id="results"></div>
+
+  <script>
+    const allPlaces = [
+      'McDonalds', 'Subway', 'Chickfila', 'PizzaHut', 'TacoBell',
+      'Wendys', 'KFC', 'Dominos', 'Popeyes'
+    ];
+
+    const votes = allPlaces.map(place => ({
+      name: place,
+      rating: parseInt(localStorage.getItem(place)) || 0
+    }));
+
+    votes.sort((a, b) => b.rating - a.rating);
+    const top5 = votes.slice(0, 5);
+
+    const resultDiv = document.getElementById('results');
+    top5.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'place';
+      div.innerText = `${item.name.replace(/([A-Z])/g, ' $1').trim()} - ⭐ ${item.rating}`;
+      resultDiv.appendChild(div);
+    });
+  </script>
+</body>
+</html>

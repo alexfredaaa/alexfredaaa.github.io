@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vote Page 1</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .item { margin: 20px 0; }
+    select { margin-left: 10px; }
+    a { display: block; margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <h2>Rate These Food Places (1/3)</h2>
+  <div class="item">McDonald's <select onchange="saveVote('McDonalds', this.value)"><option>Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+  <div class="item">Subway <select onchange="saveVote('Subway', this.value)"><option>Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+  <div class="item">Chick-fil-A <select onchange="saveVote('Chickfila', this.value)"><option>Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+  <a href="vote2.html">Next →</a>
+
+  <script>
+    function saveVote(place, rating) {
+      localStorage.setItem(place, rating);
+    }
+  </script>
+</body>
+</html>

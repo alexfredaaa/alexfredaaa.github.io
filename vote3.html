@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>Vote Page 3</title></head>
+<body>
+  <h2>Rate These Food Places (3/3)</h2>
+  <div class="item">KFC <select onchange="saveVote('KFC', this.value)"><option>Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+  <div class="item">Domino's <select onchange="saveVote('Dominos', this.value)"><option>Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+  <div class="item">Popeyes <select onchange="saveVote('Popeyes', this.value)"><option>Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+  <a href="results.html">Finish →</a>
+
+  <script>
+    function saveVote(place, rating) {
+      localStorage.setItem(place, rating);
+    }
+  </script>
+</body>
+</html>
