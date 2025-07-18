@@ -19,7 +19,6 @@
     }
     a {
       display: inline-block;
-      margin-top: 40px;
       background: #2196F3;
       color: white;
       padding: 10px 20px;
@@ -28,6 +27,8 @@
       font-size: 16px;
     }
     a:hover { background: #1976D2; }
+    .nav-buttons { margin-top: 40px; }
+    .nav-buttons a + a { margin-left: 10px; }
   </style>
 </head>
 <body>
@@ -35,7 +36,11 @@
   <div class="item" data-name="PizzaHut">Pizza Hut</div>
   <div class="item" data-name="TacoBell">Taco Bell</div>
   <div class="item" data-name="Wendys">Wendy's</div>
-  <a href="vote3.html">Next →</a>
+
+  <div class="nav-buttons">
+    <a href="vote1.html">← Back</a>
+    <a href="vote3.html">Next →</a>
+  </div>
 
   <script>
     function saveVote(place, rating) {
