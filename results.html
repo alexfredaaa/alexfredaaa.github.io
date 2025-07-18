@@ -3,18 +3,49 @@
 <head>
   <title>Your Top 5 Food Places</title>
   <style>
-    body { font-family: Arial; text-align: center; padding: 50px; }
-    .place { margin: 10px 0; font-size: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: #f9f9f9;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .place {
+      margin: 15px 0;
+      font-size: 22px;
+    }
+    .stars {
+      color: gold;
+      font-size: 22px;
+    }
+    a {
+      display: inline-block;
+      margin-top: 40px;
+      background: #4CAF50;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    a:hover {
+      background: #45a049;
+    }
   </style>
 </head>
 <body>
   <h1>🎉 Your Top 5 Favorite Food Places</h1>
   <div id="results"></div>
+  <a href="index.html" onclick="localStorage.clear()">🔁 Start Over</a>
 
   <script>
     const allPlaces = [
-      'McDonalds', 'Subway', 'Chickfila', 'PizzaHut', 'TacoBell',
-      'Wendys', 'KFC', 'Dominos', 'Popeyes'
+      'McDonalds', 'Subway', 'Chickfila',
+      'PizzaHut', 'TacoBell', 'Wendys',
+      'KFC', 'Dominos', 'Popeyes'
     ];
 
     const votes = allPlaces.map(place => ({
@@ -29,7 +60,11 @@
     top5.forEach(item => {
       const div = document.createElement('div');
       div.className = 'place';
-      div.innerText = `${item.name.replace(/([A-Z])/g, ' $1').trim()} - ⭐ ${item.rating}`;
+
+      const stars = '★'.repeat(item.rating) + '☆'.repeat(5 - item.rating);
+      const displayName = item.name.replace(/([A-Z])/g, ' $1').trim();
+
+      div.innerHTML = `<strong>${displayName}</strong><div class="stars">${stars}</div>`;
       resultDiv.appendChild(div);
     });
   </script>
